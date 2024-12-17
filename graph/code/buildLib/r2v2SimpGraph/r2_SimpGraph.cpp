@@ -205,10 +205,11 @@ public:
         if (v == destination) {
             return;  // If we've reached the destination, stop recursion
         }
-
+        std::cout << "\n parent: ";
         // Recur for all the adjacent vertices
         for (int neighbor : adjList[v]) {
             if (!visited[neighbor].second) {
+                std::cout << v << " ";
                 parentList[neighbor] = {v, 1};  // Store the parent of the vertex
                 DFSUtil(neighbor, destination);
                 if (visited[destination].second) {
@@ -241,7 +242,6 @@ public:
         parentList[start] = {-1, -1}; // The source has no parent
 
         DFSUtil(start, destination);
-        /*TODO: optimize duplicate code*/
 
         // Reconstruct the path from source to destination using parentList
         if (visited[destination].second) {
