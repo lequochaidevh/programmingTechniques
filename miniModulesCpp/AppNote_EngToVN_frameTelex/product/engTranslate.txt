@@ -1,0 +1,5 @@
+
+utilities                               tiện ích 
+mergeResolutionProgram                  chương trình phân giải hợp nhát 
+invocation                              lời kêu gọi 
+preparation                             sự chuẩn bị 
