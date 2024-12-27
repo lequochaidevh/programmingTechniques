@@ -16,7 +16,8 @@ std::unordered_map<std::string, std::string> telexMap = {
     {"ow", "ơ"}, {"ows", "ớ"}, {"owf", "ờ"}, {"owr", "ở"}, {"owx", "ỡ"}, {"owj", "ợ"},
     {"aw", "ă"}, {"aws", "ắ"}, {"awf", "ằ"}, {"awr", "ẳ"}, {"awx", "ẵ"}, {"awj", "ặ"},
     {"uw", "ư"}, {"uws", "ứ"}, {"uwf", "ừ"}, {"uwr", "ử"}, {"uwx", "ữ"}, {"uwj", "ự"},
-    {"ee", "ê"}, {"ees", "ế"}, {"eef", "ề"}, {"err", "ể"}, {"eex", "ễ"}, {"eej", "ệ"}
+    {"ee", "ê"}, {"ees", "ế"}, {"eef", "ề"}, {"eer", "ể"}, {"eex", "ễ"}, {"eej", "ệ"},
+    {"d", "d"}, {"dd", "đ"}
 };
 
 std::string telexToVietnamese(const std::string &word) {
