@@ -1,0 +1,5 @@
+﻿  main.cpp
+D:\241212_L_DesignPattern\CppDesignPattern\CppDesignPattern\inc\Structural\Adapter.h(82,39): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  (compiling source file '/src/main.cpp')
+  
+  CppDesignPattern.vcxproj -> D:\241212_L_DesignPattern\CppDesignPattern\CppDesignPattern\bin\x64\Debug\CppDesignPattern.exe

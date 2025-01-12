@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Observer">
+      <UniqueIdentifier>{8f4a6c6c-3b76-4d6f-bbd5-8a276795948c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Singleton">
+      <UniqueIdentifier>{9a8381df-921b-44e0-91a2-ebe08a106acd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\Behavioral\Observer.h">
+      <Filter>Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Creational\Singleton.h">
+      <Filter>Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="pch\pch.h" />
+    <ClInclude Include="inc\Behavioral\ObserverSourceMaking.h" />
+    <ClInclude Include="inc\Creational\AbstractFactory.h" />
+    <ClInclude Include="inc\Creational\FactoryMethod.h" />
+    <ClInclude Include="inc\Structural\Decorator.h" />
+    <ClInclude Include="inc\Behavioral\Command.h" />
+    <ClInclude Include="inc\Behavioral\Strategy.h" />
+    <ClInclude Include="inc\Structural\Adapter.h" />
+    <ClInclude Include="inc\Behavioral\State.h" />
+    <ClInclude Include="inc\Behavioral\ChainOfResonsibility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="pch\pch.cpp" />
+  </ItemGroup>
+</Project>

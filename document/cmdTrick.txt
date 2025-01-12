@@ -1,0 +1,10 @@
+echo -en '//g++ -o r1_GraphTheory r1_GraphTheory.cpp' >> r1_GraphTheory.cpp
+echo -en '//g++ -o r1_GraphTheory r1_GraphTheory.cpp' > r1_GraphTheory.cpp
+echo  > : replace all text in file
+echo >> : add to new line
+
+sudo lsof -i  | grep LISTEN
+
+
+
+nautilus ./

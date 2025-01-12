@@ -1,4 +1,6 @@
 	Backtracking Algorithm | N Queen Math Problem
 	
+	Dynamic Programing
+	
 
 

@@ -1,0 +1,9 @@
+
+Namespace giả lập tài nguyên
+Cgroup Giới hạn, cấu hình tài nguyên của một proccess
+Namespace + Cgroup = container
+
+Hypervisor:
+Container:
+
+

@@ -1,0 +1,10 @@
+"www.lx.com",
+"www.facebook.com",
+"www.stackoverflow.com",
+"www.segmentfault.com",
+"www.kipalog.com",
+"www.facebook1.com",
+"www.facebook2.com",
+"www.facebook3.com",
+"www.facebook4.com",
+"www.kipalog2.com"
