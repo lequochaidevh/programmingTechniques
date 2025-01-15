@@ -3,7 +3,7 @@
 #include <climits>
 #include <functional>
 #define NDEBUG (1)
-#include "debug_macro.h"
+//#include "debug_macro.h"
 using namespace std;
 
 bool init();
@@ -49,7 +49,7 @@ bool init(){
     for(int i=0; i < 20;) {
     _continueWhile1:    //template 1
         val=i;
-        i++;
+        i++; //NOTE
         cout << "val1 = " << val << "\n";
         DO_STH(dosthList[0].callback,dosthList[0].jumpState,While1);    //template in while
         cout << "val2 = " << val << "\n";
@@ -69,7 +69,7 @@ int main() {
     A.jumpState = CONTINUE;
     dosthList.push_back(A);
 
-    callbackDoSthList.push_back(isCall);
+    //callbackDoSthList.push_back(isCall);
 
     if(init()) {
         cout << "init success\n";
