@@ -2,14 +2,16 @@
 #include <stdarg.h>
 #include"debug_macro.h"// 
 #include <string.h>
+#include <ctype.h>
+
 #define MAX_LINK_LENGTH (100)
 #define MAX_NUM_LINK (20)
 
 #define N_DUMMY_LINKS (10)
-#define N_DUMMY_RESULT_SITE (2)
+#define N_DUMMY_RESULT_SITE (3)
 
 //
-// Dummy danh sách links kết quả tìm kiếm từ google 
+// Dummy result link List from google 
 //
 const char* DUMMY_RESULT_LINKS[] =
 {
@@ -17,46 +19,19 @@ const char* DUMMY_RESULT_LINKS[] =
 }; 
 
 //
-// Dummy những site có sample source
+// Dummy of many site have sample source
 //
 const char* DUMMY_HAS_SOURCE_CODE_SITE[]=
 {
     "www.stackoverflow.com",
-    "www.kipalog.com"
+    "www.kipalog.com",
+    "www.facebook1.com"
 };
 
 //
-// Hàm tìm kiếm từ khóa trên google, trả về kết quả là danh sách link
+// seach for key word in google, This will return the result, which is link list.
 //
-void search_google_base(char* keyword, char result[MAX_NUM_LINK][MAX_LINK_LENGTH], int *nResults)
-{
-    int i = 0;
 
-    log_debug("Search google : (keyword=%s) START \n", keyword);
-
-    for (i = 0; i < N_DUMMY_LINKS; i++)
-    {
-        strcpy(result[i], DUMMY_RESULT_LINKS[i]);
-    }
-    *nResults = N_DUMMY_LINKS;
-
-    log_debug("Search google : (nResults=%d) END \n", *nResults);
-    
-    /*    
-    char* s = "www.facebook.com";
-    char* t = "facebook";
-    char *res = strstr(s, t);
-    if(res == NULL){
-        printf("%s khong xuat hien trong %s\n", t, s);
-    }
-    else{
-        printf("%s xuat hien trong %s\n", t, s);
-        printf("Vi tri xuat hien dau tien : %ld\n", res - s);
-    }
-*/
-    
-    
-}
 
 void search_google(char* keyword, char result[MAX_NUM_LINK][MAX_LINK_LENGTH], int *nResults)
 {
@@ -79,42 +54,45 @@ void search_google(char* keyword, char result[MAX_NUM_LINK][MAX_LINK_LENGTH], in
 
 
 //
-// Hàm chạy source sample từ một link đưa vào từ tham số
+// run source sample by a link pagrameter
 //
 int runSource(char* link)
 {
-    int retVal = 1;
-
-    //log_debug("Run source in (link=%s) START \n",link);
-    if (strstr(link, "www.kipalog.com") != NULL)
+    int retVal = 0;
+    int i;
+    for (i = 0; i < N_DUMMY_RESULT_SITE; i++)
     {
-        log_debug("OK, It works!!!!\n");
-        retVal = 1;
+        if (strcmp(link, DUMMY_HAS_SOURCE_CODE_SITE[i]) == 0)
+    	{
+        	log_debug("OK, It works!!!! At: %d \n", i+1);
+        	retVal ++;
+    	}
+    	else
+    	{
+    	    log_err("Hmm, Bad source (link=%s) \n",link);
+    	    //retVal = 0;
+    	}
     }
-    else
-    {
-        log_err("Hmm, Bad source (link=%s) \n",link);
-        retVal = 0;
-    }
-    //log_debug("Run source in (link=%s) END \n",link);
+    
 
     return retVal;
 }
 
 //
-// Hàm kiểm tra một link có chưa sample source hay không.
+// Check link have sample source.
 //
 int hasSampleSource(char* link)
 {
     int i = 0;
     int retVal = 0;
 
-    //log_debug("Check source (link=%s) START \n",link);
+    log_debug("Check source (link=%s) START \n",link);
     for (i = 0; i < N_DUMMY_RESULT_SITE; i++)
     {
-        if (strstr(link, DUMMY_HAS_SOURCE_CODE_SITE[i]) != NULL)
+        if (strstr(DUMMY_HAS_SOURCE_CODE_SITE[i],link) != NULL)
         {
-            retVal = 1; printf("Have source (link=%s) END \n",link);
+            retVal = 1; 
+            printf("Have source (link=%s) END \n",link);
             break;
         }
     }
@@ -123,9 +101,7 @@ int hasSampleSource(char* link)
     return retVal;
 }
 
-//
-// Hàm start-up
-//
+
 int main(int argc, char* argv[])
 {
     char *keyword;
@@ -133,27 +109,28 @@ int main(int argc, char* argv[])
     int nResults;
     int i = 0;
 
-    // Kiểm tra tham số
+    // Check pagram
     if (2 != argc)
     {
         log_err("Invalid parameter, usage: %s <keyword>\n",argv[0]);
         return 0;
     }
 
-    // Lấy keyword
+    // Get keyword
     keyword = argv[1];
 
-    // Tìm google
+    // Find in google
     search_google(&keyword[0], results, &nResults);
-    if (nResults > 0)// Nếu có kết quả
+    
+    if (nResults > 0)// If have results
     {
-        // Duyệt từng link kết quả
+        // find throuth out link result
         for (i = 0; i < nResults; i++)
         {
             log_debug("Try (link=%s) \n",results[i]);
-            if (hasSampleSource(results[i])) // Kiểm tra xem có sample source hay không 
+            if (hasSampleSource(results[i])) // Check: have sample source? 
             {
-                // Chạy thử source sample
+                // Run source sample
                 runSource(results[i]);
             }
             else
@@ -170,7 +147,8 @@ int main(int argc, char* argv[])
 }
 
 /*
-	./a.out hello
+	gcc program.c
+	./a.out facebook
 */
 
 
