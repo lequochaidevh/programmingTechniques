@@ -1,0 +1,23 @@
+printf "Hello, %s\n" world
+printf "My name is %s " Jordan Gloor
+printf "\n"
+printf "Hello, %s. \n"
+printf "%s is one of the largest online %s." MUO "technology publications. \n"
+printf "MUO was founded in %d." 2007 
+printf "\n"
+printf "1 + 1 is %d " $((1+1))
+printf "\n"
+printf %X 1000
+printf "\n"
+printf "%(%m-%d-%Y %H:%M:%S)T " $(date +%s)
+printf "\n"
+printf "\u00A9 " 
+printf "\n"
+printf "%s:%5d " "Value 1" 25 "Value 2" 120
+printf "\n"
+printf "%-10s: %d " "Circles" 25 "Boxes" 120 
+printf "\n"
+printf "%10s: %d " "Circles" 25 "Boxes" 120 
+printf "\n"
+printf "%*s: %d " -10 "Circles" 25 -10 "Boxes" 120 
+printf "\n"

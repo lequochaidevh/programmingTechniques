@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
         free(buffer);
         return 1;
     }
-    memset(buffer, 0, 2221);  // Initialize the buffer to zero (null-terminate it)
+    //memset(buffer, 0, 2221);  // Initialize the buffer to zero (null-terminate it)
     if( fd ){
         bytes_read = read(fd, buffer,2220);
         if (bytes_read == -1) {
