@@ -1,5 +1,5 @@
 ﻿/* Author: devh
- * Update: 19/1/2025
+ * Update: 21/1/2025
 */
 #ifndef _BALL_H_
 #define _BALL_H_
@@ -14,13 +14,15 @@
 #include <time.h>
 #include <random>
 #include <vector>
+#include <string>
 
-#define NUM_BALLS 200
+#define NUM_BALLS 500
 #define WINDOW_HEIGHT 1000
-#define WINDOW_WIDTH 1400
+#define WINDOW_WIDTH 1600
 
 #define CENTER_X_WD WINDOW_WIDTH/2
 #define CENTER_Y_WD WINDOW_HEIGHT/2
+
 
 float getFloatRandom(float minNum , float maxNum){
     //std::random_device rd;
@@ -66,6 +68,7 @@ struct Ball {
     float radius;        // Radius of the ball
     float loopEdgeX, loopEdgeY;
     ColorRGB rgb_t;
+    std::string nameWBall;
 };
 
 
@@ -75,7 +78,7 @@ public:
     WBall(){
 
     };
-    void initDefaultBall();
+    void initDefaultBall(std::string nameTag);
     void moveBall(GtkWidget *widget);
     //gboolean on_draw(GtkWidget *widget, cairo_t *cr, gpointer data);
     //gboolean on_timeout(gpointer data);
@@ -87,11 +90,9 @@ struct CallbackData {
     GtkWidget* drawing_area;
 };
 
-// The ball object
-Ball ball;
 
 // Function to initialize the ball's attributes
-void WBall::initDefaultBall() {
+void WBall::initDefaultBall(std::string nameTag) {
     mball.x = CENTER_X_WD;
     mball.y = CENTER_Y_WD;
     mball.dx = getFloatRandom(0.5f, 4.0f);
@@ -100,17 +101,9 @@ void WBall::initDefaultBall() {
     mball.rgb_t.fRed = getFloatRandom(0.0f, 1.0f);
     mball.rgb_t.fGreen = getFloatRandom(0.0f, 1.0f);
     mball.rgb_t.fBlue = getFloatRandom(0.0f, 1.0f);
+    mball.nameWBall = "ball "  + nameTag;
 }
 
-// Simple logger function with timestamp
-//void log_collision(const std::string& axis) {
-//    using namespace std::chrono;
-//    auto now = system_clock::now();
-//    auto time = system_clock::to_time_t(now);
-//    std::cout << "[" << std::ctime(&time) << "] Collision detected, reverse direction on the " << axis << " axis." << std::endl;
-//    std::cout << "ball.x = " << ball.x << " ball.dx = " << ball.dx << std::endl;
-//    std::cout << "ball.y = " << ball.y << " ball.dy = " << ball.dy << std::endl;
-//}
 
 // Function to update the ball's position
 void WBall::moveBall(GtkWidget *widget) {
@@ -135,14 +128,14 @@ void WBall::moveBall(GtkWidget *widget) {
     }
 
     // TODO : APP still work when be resized - But if you scroll a edge of window to near mid-ball -> have problems
-    if (mball.x - mball.radius <= 0 || mball.x + mball.radius >= width) {
+    if (mball.x - mball.radius <= 0 || mball.x <= 0 || mball.x + mball.radius >= width || mball.x >= width) {
         int centerXforward = mball.x - (width/2); //get direction forward
         mball.loopEdgeX ++;
         mball.x = (width/2) + centerXforward + mball.loopEdgeX*mball.dx;
     } else {
         mball.loopEdgeX = 0.0f;
     }
-    if (mball.y - mball.radius <= 0 || mball.y + mball.radius >= height) {
+    if (mball.y - mball.radius <= 0 || mball.y <= 0 || mball.y + mball.radius >= height || mball.y >= height) {
         int centerYforward = mball.y - (height/2);
         mball.loopEdgeY ++;
         mball.y = (height/2) + centerYforward + mball.loopEdgeY*mball.dy;
@@ -162,6 +155,22 @@ gboolean on_draw(GtkWidget *widget, cairo_t *cr, gpointer data) {
         cairo_set_source_rgb(cr, vBall.mball.rgb_t.fRed, vBall.mball.rgb_t.fGreen, vBall.mball.rgb_t.fBlue); // Set the color for the ball
         cairo_arc(cr, vBall.mball.x, vBall.mball.y, vBall.mball.radius, 0, 2 * G_PI);  // Draw the ball
         cairo_fill(cr);  // Fill the circle with the chosen color
+
+        // Set the font size and style
+        cairo_select_font_face(cr, "Sans", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL);
+        cairo_set_font_size(cr, 13);
+
+        // Set the drawing color (black)
+        cairo_set_source_rgb(cr, 0, 0, 0);
+
+        // Get the text extents
+        cairo_text_extents_t extents;
+        cairo_text_extents(cr, vBall.mball.nameWBall.c_str(), &extents);
+        //std::cout << extents.width << "\n";
+
+        // Move to the calculated position and draw the text
+        cairo_move_to(cr, vBall.mball.x - extents.width/2, vBall.mball.y);
+        cairo_show_text(cr, vBall.mball.nameWBall.c_str());
     }
 
 
@@ -184,8 +193,10 @@ gboolean on_timeout(gpointer data) {
 }
 
 void wBallListInit(std::vector<WBall>& BallVec) {
+    int iNumber = 0;
     for (auto& nBall : BallVec) {
-        nBall.initDefaultBall();  // Initialize each WBall object
+        nBall.initDefaultBall(std::to_string(iNumber));  // Initialize each WBall object
+        iNumber++;
     }
 }
 
@@ -264,7 +275,7 @@ int ball_main(int argc, char *argv[]) {
     // Create a window
     GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(window), "Moving Ball");
-    gtk_window_set_default_size(GTK_WINDOW(window), 1400, 1000);
+    gtk_window_set_default_size(GTK_WINDOW(window), WINDOW_WIDTH, WINDOW_HEIGHT);
 
     // Create a drawing area to display the ball
     GtkWidget *drawing_area = gtk_drawing_area_new();
