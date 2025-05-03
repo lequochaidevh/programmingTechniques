@@ -1,14 +1,14 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-// Callback khi nhấn phím
+// Callback when press keyboard
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, true);
     }
 }
 
-// Callback khi di chuyển chuột
+// Callback when move the mouse
 void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos) {
     std::cout << "Mouse moved to: " << xpos << ", " << ypos << std::endl;
 }
@@ -28,18 +28,18 @@ int main() {
 
     glfwMakeContextCurrent(window);
     
-    // Đăng ký callback
+    // Register callback
     glfwSetKeyCallback(window, keyCallback);
     glfwSetCursorPosCallback(window, cursorPositionCallback);
 
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
         
-        // Vẽ (OpenGL nếu có thể)
+        // Draw (OpenGL if can)
         // ...
 
         glfwSwapBuffers(window);
-        glfwPollEvents();  // Xử lý sự kiện
+        glfwPollEvents();  // Event processing
     }
 
     glfwDestroyWindow(window);
