@@ -1,0 +1,1 @@
+g++ -o bullet_detect ver1_orgin.cpp -lglfw -lGL -lm
