@@ -1,0 +1,11 @@
+[
+    {
+      "key": "ctrl+r",
+      "command": "workbench.action.terminal.sendSequence",
+      "args": {
+        "text": "./run.sh\u000D"
+      },
+      "when": "terminalFocus"
+    }
+  ]
+  

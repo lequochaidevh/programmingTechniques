@@ -1,0 +1,16 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run All Commands",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "./run.sh"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}
