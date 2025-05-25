@@ -1,3 +1,0 @@
-/home/devh/minecraft_c/prj/client/build/CMakeFiles/rebuild_cache.dir
-/home/devh/minecraft_c/prj/client/build/CMakeFiles/edit_cache.dir
-/home/devh/minecraft_c/prj/client/build/CMakeFiles/minecraftC.dir
