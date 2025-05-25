@@ -11,8 +11,6 @@
     "code-runner.defaultLanguage": "c17",
     "code-runner.runInTerminal": true,
     "code-runner.executorMap": {
-        "c": "cd $PROJECT_DIR/client/ && [ -d \"build/\" ] && rm -rf build/ && mkdir build && cd build/ && cmake .. && cmake --build . -- -j4 && ./minecraftC"
-    },  
+        "c": "cd $PROJECT_DIR/client/ && [ -d \"build/\" ] && rm -rf build/ && mkdir build && cd build/ && cmake ../ && cmake --build ./ -- -j4 && true"
+    }  
 }
-
-// PROJECT_DIR include by setup_env from ~/.bashrc
