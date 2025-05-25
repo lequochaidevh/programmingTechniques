@@ -1,0 +1,20 @@
+ 2002  history | grep install
+ 2003  apt list --installed
+ 2004  df -h
+ 2005  sudo du -sh /usr/*
+ 2006  sudo du -sh /snap/*
+ 2007  dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -nr | head -20
+ 2008  sudo apt remove texlive-full
+ 2009  sudo apt purge texlive-full
+ 2010  sudo apt autoremove
+ 2011  dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -nr | head -20
+ 2012  sudo apt purge texlive-latex-extra-doc
+ 2013  sudo apt purge texlive-fonts-extra
+ 2014  sudo apt autoremove
+ 2015  sudo apt purge texlive-full
+ 2016  dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -nr | head -20
+ 2017  sudo apt purge texlive-lang-japanese
+ 2018  dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -nr | grep latex
+
+
+
