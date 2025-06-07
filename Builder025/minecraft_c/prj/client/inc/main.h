@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <math.h>
 #define Y_PIXELS 200
-#define X_PIXELS 400
+#define X_PIXELS 500
 #define Z_BLOCKS 10
 #define Y_BLOCKS 20
 #define EYE_HEIGHT 1.5

@@ -1,0 +1,1 @@
+/usr/lib/ccache/cc    CMakeFiles/minecraftC.dir/src/main.c.o  -o minecraftC  -lm 

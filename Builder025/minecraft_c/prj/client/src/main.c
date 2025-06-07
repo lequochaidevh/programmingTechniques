@@ -292,12 +292,14 @@ void draw_ascii(char** picture) {
 
 int main() {
     printf("\n\n");
+    printf("\x1B[32m"); // Set terminal text color to green
     printf("-------------------------------------------------------------------\n");
     printf("Minecraft                    ---                    version 1.0.0\n");
     printf("License                      ---                    MIT\n");
     printf("Author                       ---                    devh\n");
     printf("Code language                ---                    c17\n");
     printf("-------------------------------------------------------------------\n");
+    printf("\x1B[0m");  // Reset terminal text color
     sleep(5);
     init_terminal();
     // Init obj by char pixel

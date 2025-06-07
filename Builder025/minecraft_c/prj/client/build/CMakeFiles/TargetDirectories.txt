@@ -1,0 +1,3 @@
+/home/devh/workspace/programmingTechniques/Builder025/minecraft_c/prj/client/build/CMakeFiles/rebuild_cache.dir
+/home/devh/workspace/programmingTechniques/Builder025/minecraft_c/prj/client/build/CMakeFiles/edit_cache.dir
+/home/devh/workspace/programmingTechniques/Builder025/minecraft_c/prj/client/build/CMakeFiles/minecraftC.dir
